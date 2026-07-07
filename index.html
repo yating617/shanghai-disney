@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="上海迪士尼 8/24 一日夢幻行程 — 早享卡入園、免費預約等候卡、玩到城堡煙火">
+<meta property="og:title" content="上海迪士尼一日夢幻行程 · 8/24">
+<meta property="og:description" content="早享卡入園、免費預約等候卡標示、玩到城堡煙火 🏰🎆">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2b1d5c">
+<title>上海迪士尼一日夢幻行程 · 8/24</title>
+<style>
+  :root {
+    --night-1: #1c1147;
+    --night-2: #2b1d5c;
+    --night-3: #3a2a72;
+    --castle-pink: #f4a9c7;
+    --castle-pink-deep: #e87ba8;
+    --magic-gold: #f5c542;
+    --lavender: #c9b8e8;
+    --spark-white: #fdfbff;
+
+    --bg: #fbf7fd;
+    --surface: #ffffff;
+    --surface-2: #f6eefb;
+    --ink: #2a1f47;
+    --ink-soft: #6a5b86;
+    --line: #ecdff4;
+    --accent: #b0568e;
+    --accent-soft: #f4a9c7;
+    --gold-ink: #b8860b;
+
+    --star-opacity: 0;
+    --shadow: 0 8px 30px rgba(72, 40, 110, 0.10);
+    --shadow-lift: 0 14px 44px rgba(72, 40, 110, 0.18);
+
+    --font-display: "Baloo 2", "Noto Sans TC", system-ui, sans-serif;
+    --font-body: "Noto Sans TC", system-ui, -apple-system, sans-serif;
+    --maxw: 760px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #140c33;
+      --surface: #221650;
+      --surface-2: #2c1e63;
+      --ink: #f3edff;
+      --ink-soft: #b6a6dc;
+      --line: #3a2b70;
+      --accent: #f4a9c7;
+      --accent-soft: #e87ba8;
+      --gold-ink: #f5c542;
+      --star-opacity: 1;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      --shadow-lift: 0 14px 44px rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #fbf7fd; --surface: #ffffff; --surface-2: #f6eefb;
+    --ink: #2a1f47; --ink-soft: #6a5b86; --line: #ecdff4;
+    --accent: #b0568e; --accent-soft: #f4a9c7; --gold-ink: #b8860b;
+    --star-opacity: 0;
+    --shadow: 0 8px 30px rgba(72, 40, 110, 0.10);
+    --shadow-lift: 0 14px 44px rgba(72, 40, 110, 0.18);
+  }
+  :root[data-theme="dark"] {
+    --bg: #140c33; --surface: #221650; --surface-2: #2c1e63;
+    --ink: #f3edff; --ink-soft: #b6a6dc; --line: #3a2b70;
+    --accent: #f4a9c7; --accent-soft: #e87ba8; --gold-ink: #f5c542;
+    --star-opacity: 1;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    --shadow-lift: 0 14px 44px rgba(0, 0, 0, 0.5);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 74px 20px 60px;
+    background:
+      radial-gradient(120% 80% at 50% -10%, var(--night-3) 0%, var(--night-2) 42%, var(--night-1) 100%);
+    color: var(--spark-white);
+    isolation: isolate;
+  }
+  .hero::after {
+    /* twinkling stars only meaningful on the night sky, always visible on hero */
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 70% 20%, #fff, transparent),
+      radial-gradient(2px 2px at 40% 60%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 85% 55%, #ffe9a8, transparent),
+      radial-gradient(1.5px 1.5px at 12% 75%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 55% 40%, #ffd6ea, transparent),
+      radial-gradient(1.5px 1.5px at 90% 80%, #fff, transparent);
+    opacity: .85;
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: .45; } to { opacity: .9; } }
+  @media (prefers-reduced-motion: reduce) { .hero::after { animation: none; } }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px; letter-spacing: .32em; text-transform: uppercase;
+    color: var(--magic-gold);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .castle { font-size: 46px; line-height: 1; margin-bottom: 6px; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(30px, 7vw, 46px);
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+    text-wrap: balance;
+    text-shadow: 0 2px 20px rgba(244,169,199,.35);
+  }
+  .hero .date-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.22);
+    backdrop-filter: blur(4px);
+    padding: 8px 18px; border-radius: 999px;
+    font-size: 15px; font-weight: 600;
+    color: var(--spark-white);
+  }
+  .hero .date-pill b { color: var(--magic-gold); font-weight: 700; }
+
+  /* quick facts */
+  .facts {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-top: 34px;
+  }
+  .fact {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 16px; padding: 16px 10px;
+  }
+  .fact .k { font-size: 12px; color: var(--lavender); letter-spacing:.08em; }
+  .fact .v {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 22px; margin-top: 4px; color: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+  .fact .v small { font-size: 13px; font-weight: 500; color: var(--lavender); }
+  @media (max-width: 520px) {
+    .facts { grid-template-columns: 1fr; }
+    .fact { display:flex; align-items:baseline; justify-content:space-between; padding:14px 18px; }
+    .fact .v { margin-top: 0; }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block { padding: 46px 0 8px; }
+  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .sec-head h2 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 24px; margin: 0; color: var(--ink);
+  }
+  .sec-head .dot { font-size: 22px; }
+  .sec-sub { color: var(--ink-soft); margin: 0 0 26px; font-size: 15px; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline { position: relative; margin-left: 8px; padding-left: 30px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 7px; top: 8px; bottom: 20px;
+    width: 3px; border-radius: 3px;
+    background: linear-gradient(var(--castle-pink), var(--lavender) 60%, var(--night-3));
+  }
+  .stop { position: relative; margin-bottom: 22px; }
+  .stop::before {
+    content: ""; position: absolute; left: -30px; top: 22px;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--castle-pink-deep);
+    box-shadow: 0 0 0 4px var(--bg);
+    transform: translateX(-1px);
+  }
+  .stop.gem::before { border-color: var(--magic-gold); background: var(--magic-gold); }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+  .time {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700; font-size: 13px; letter-spacing: .04em;
+    color: #fff; background: var(--accent);
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .card h3 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 18px; margin: 0 0 6px; color: var(--ink);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  }
+  .zone {
+    font-size: 11px; font-weight: 700; letter-spacing:.05em;
+    color: var(--accent); background: var(--surface-2);
+    padding: 2px 9px; border-radius: 6px;
+  }
+  .card p { margin: 6px 0 0; color: var(--ink-soft); font-size: 14.5px; }
+  .card p.note::before { content: "💡 "; }
+  .card ul { margin: 8px 0 0; padding-left: 20px; color: var(--ink-soft); font-size: 14.5px; }
+  .card ul li { margin: 3px 0; }
+
+  .badge-free {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 700; letter-spacing:.03em;
+    color: #6b4a00; background: linear-gradient(135deg, #ffe9a0, var(--magic-gold));
+    padding: 2px 9px; border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(184,134,11,.3);
+  }
+  .card.freecard { border-color: var(--magic-gold); background: linear-gradient(180deg, var(--surface), var(--surface-2)); }
+  .card.showcard { border-color: var(--castle-pink); }
+
+  /* ---------- HIGHLIGHT (预约等候卡 how-to) ---------- */
+  .howto {
+    background: linear-gradient(160deg, var(--night-2), var(--night-3));
+    border-radius: 24px; padding: 30px 24px 34px; color: var(--spark-white);
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow-lift);
+  }
+  .howto h2 { font-family: var(--font-display); font-weight:800; font-size: 22px; margin:0 0 6px; color:#fff; }
+  .howto .lead { color: var(--lavender); margin: 0 0 24px; font-size: 14.5px; }
+  .steps { display: grid; gap: 12px; counter-reset: step; }
+  .step {
+    display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px; padding: 14px 16px;
+  }
+  .step .num {
+    font-family: var(--font-display); font-weight: 800; font-size: 18px;
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--castle-pink), var(--castle-pink-deep));
+    color: #fff;
+  }
+  .step .txt { font-size: 14px; line-height: 1.6; }
+  .step .txt b { color: var(--magic-gold); }
+  .howto .tip {
+    margin-top: 18px; font-size: 13px; color: var(--lavender);
+    border-top: 1px dashed rgba(255,255,255,.2); padding-top: 14px;
+  }
+
+  /* ---------- SHOWTIMES ---------- */
+  .shows { display: grid; gap: 12px; }
+  .showrow {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 4px solid var(--castle-pink-deep);
+    border-radius: 14px; padding: 14px 18px; box-shadow: var(--shadow);
+  }
+  .showrow .when {
+    font-family: var(--font-display); font-weight: 800; font-size: 17px;
+    color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .showrow .what b { display:block; font-size:15px; color:var(--ink); font-weight:700; }
+  .showrow .what span { font-size: 13px; color: var(--ink-soft); }
+
+  /* ---------- TIPS ---------- */
+  .tipgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+  @media (max-width: 520px){ .tipgrid { grid-template-columns: 1fr; } }
+  .tipcard {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; padding: 15px 16px; box-shadow: var(--shadow);
+  }
+  .tipcard .ico { font-size: 22px; }
+  .tipcard b { display:block; margin: 6px 0 3px; color: var(--ink); font-size: 15px; }
+  .tipcard p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height:1.6; }
+
+  /* ---------- FOOTER ---------- */
+  footer { text-align: center; padding: 40px 20px 54px; color: var(--ink-soft); font-size: 13px; }
+  footer a { color: var(--accent); }
+  .footcastle { font-size: 30px; display:block; margin-bottom: 8px; }
+  .plan-link {
+    display:inline-block; margin-top:6px; font-size:13px;
+    color: var(--accent); text-decoration: none; border-bottom:1px solid var(--accent-soft);
+    padding-bottom:1px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="castle">🏰</span>
+  <span class="eyebrow">Shanghai Disney Resort</span>
+  <h1>上海迪士尼<br>一日夢幻攻略</h1>
+  <span class="date-pill">📅 <b>8/24（六）</b> · 早享卡・玩到煙火</span>
+
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><div class="k">最晚抵達</div><div class="v">6:30</div></div>
+      <div class="fact"><div class="k">早享入園</div><div class="v">7:30 <small>早享卡</small></div></div>
+      <div class="fact"><div class="k">正式開園</div><div class="v">8:30</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ 到達前 ============ -->
+  <section class="block">
+    <div class="sec-head"><span class="dot">🌅</span><h2>出發 · 抵達</h2></div>
+    <p class="sec-sub">早享卡的黃金一小時很珍貴，寧可早到排隊等入園。</p>
+    <div class="timeline">
+      <div class="stop">
+        <div class="card">
+          <span class="time">～6:30</span>
+          <h3>抵達迪士尼樂園</h3>
+          <p class="note">最晚 6:30 到，先過安檢、找到入口閘門排隊，才能吃到早享卡整整一小時的紅利。</p>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="card">
+          <span class="time">入園前</span>
+          <h3>先開好官方 App</h3>
+          <p>提前下載「上海迪士尼度假區」官方 App、登入帳號、綁定門票並<b>建立遊玩組</b>，一入園就能全組一起領預約等候卡。詳細步驟見下方 👇</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 预约等候卡 how-to ============ -->
+  <section class="block">
+    <div class="howto">
+      <h2>🎟️ 迪士尼預約等候卡 · 領取教學</h2>
+      <p class="lead">部分熱門設施可用「預約等候卡」<b style="color:var(--magic-gold)">免費預約</b>時段，不必付費，App 上操作即可。</p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="txt">提前下載<b>上海迪士尼度假區官方 App</b>，用手機號碼或郵箱建立帳號。</div></div>
+        <div class="step"><div class="num">2</div><div class="txt">入園後，打開並登入 App，點入「<b>玩樂</b>」入口下的「<b>預約等候卡</b>」。</div></div>
+        <div class="step"><div class="num">3</div><div class="txt">選擇想領取的預約等候卡<b>體驗類別</b>（景點 / 演出 / 其他）。</div></div>
+        <div class="step"><div class="num">4</div><div class="txt">掃描樂園門票二維碼，把同行夥伴的門票一同關聯，<b>建立遊玩組</b>，全組就能領同一時段、一起玩。</div></div>
+        <div class="step"><div class="num">5</div><div class="txt">在每個類別各選一個想體驗的項目，App 顯示<b>最早可預約時段</b>，無需額外付費。不同類別可同時各領一張。</div></div>
+        <div class="step"><div class="num">6</div><div class="txt">在指定時間到達景點的「<b>預約等候卡入口</b>」，掃碼驗證成功即可入場體驗。</div></div>
+      </div>
+      <p class="tip">📱 沒有智慧型手機、或領取遇到困難，可到園區內「遊客服務中心」求助。</p>
+    </div>
+  </section>
+
+  <!-- ============ 白天行程 ============ -->
+  <section class="block">
+    <div class="sec-head"><span class="dot">☀️</span><h2>白天 · 衝設施</h2></div>
+    <p class="sec-sub">開園先拉一個園區把最搶手的玩掉，遊行時段前記得預留卡位時間。標 <span class="badge-free">🎟️ 免費預約卡</span> 的可用預約等候卡。</p>
+
+    <div class="timeline">
+
+      <div class="stop">
+        <div class="card">
+          <span class="time">開園衝刺</span>
+          <h3>熱力追蹤 <span class="zone">瘋狂動物城</span></h3>
+          <p class="note">現場排隊才能拍到布景，想拍照的話早點去、人少好取景。</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="card">
+          <span class="time">上午</span>
+          <h3>巴斯光年星際營救 <span class="zone">明日世界</span></h3>
+          <p>經典射擊遊戲，親子同樂，開園初期排隊較短。</p>
+        </div>
+      </div>
+
+      <div class="stop gem">
+        <div class="card showcard">
+          <span class="time">上午</span>
+          <h3>創極速光輪 TRON <span class="zone">明日世界</span></h3>
+          <p class="note">建議買<b>單項快速通行</b>！希希先去卡位遊行，其他人玩完 TRON 再會合。全園最熱門，快通最值得下手。</p>
+        </div>
+      </div>
+
+      <div class="stop gem">
+        <div class="card showcard">
+          <span class="time">11:30 卡位</span>
+          <h3>「友誼號」12:00 遊行 <span class="zone">明日世界 / 玩具總動員</span></h3>
+          <p class="note">至少 <b>11:30 開始排卡位</b>。若人潮太多，可改看下午 15:35 那場。明日世界、玩具總動員區都看得到。</p>
+        </div>
+      </div>
+
+      <div class="stop gem">
+        <div class="card freecard">
+          <span class="time">午後</span>
+          <h3>七個小矮人礦山車 <span class="badge-free">🎟️ 免費預約卡</span></h3>
+          <p><b>可用迪士尼預約等候卡免費領取！</b>夢幻世界人氣王，用預約卡省下大排長龍的時間。</p>
+        </div>
+      </div>
+
+      <div class="stop gem">
+        <div class="card freecard">
+          <span class="time">接續</span>
+          <h3>小熊維尼歷險記 <span class="badge-free">🎟️ 免費預約卡</span></h3>
+          <p><b>可用預約等候卡免費領取。</b>視當日排隊時長決定是否玩 —— 順路、溫馨的親子項目。</p>
+        </div>
+      </div>
+
+      <div class="stop gem">
+        <div class="card freecard">
+          <span class="time">接續</span>
+          <h3>小飛俠天空奇遇 <span class="badge-free">🎟️ 免費預約卡</span></h3>
+          <p><b>可用預約等候卡免費領取。</b>同樣視現場情況與排隊時長決定，飛越倫敦夜空的經典暗黑騎乘。</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="card">
+          <span class="time">下午</span>
+          <h3>加勒比海盜 — 沉落寶藏之戰 <span class="zone">寶藏灣</span></h3>
+          <p class="note">上海獨有的旗艦版本，聲光場景一流，天熱時的室內好去處。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 表演時刻表 ============ -->
+  <section class="block">
+    <div class="sec-head"><span class="dot">🎆</span><h2>表演 · 卡位時刻表</h2></div>
+    <p class="sec-sub">時間可能微調，以當日 App／園區時刻表為準，建議都提前 30–60 分鐘卡位。</p>
+    <div class="shows">
+      <div class="showrow">
+        <div class="when">12:05<br><span style="font-size:12px;font-weight:600;">＆15:35</span></div>
+        <div class="what"><b>友誼號遊行</b><span>明日世界 & 玩具總動員區皆可觀賞，提前約半小時卡位。</span></div>
+      </div>
+      <div class="showrow">
+        <div class="when">～21:00</div>
+        <div class="what"><b>奇夢之光幻影秀（城堡投影秀）</b><span>時間會變動，通常 21:00–21:15。建議提前 30–60 分鐘，站在正中央、故事家雕像附近。</span></div>
+      </div>
+      <div class="showrow">
+        <div class="when">～21:30</div>
+        <div class="what"><b>煙火奇妙在身邊</b><span>壓軸城堡煙火。與幻影秀同一區觀賞，卡好位子一次看完兩場。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 傍晚壓軸 ============ -->
+  <section class="block">
+    <div class="sec-head"><span class="dot">🌙</span><h2>夜晚 · 壓軸煙火</h2></div>
+    <div class="timeline">
+      <div class="stop gem">
+        <div class="card showcard">
+          <span class="time">約 20:00 卡位</span>
+          <h3>奇幻花園正中央 卡位</h3>
+          <p class="note">灯光秀＋煙火都在<b>奇幻花園正中央區、故事家雕像附近</b>。提前去鋪野餐墊卡位，等城堡點亮的魔法時刻。</p>
+        </div>
+      </div>
+      <div class="stop gem">
+        <div class="card showcard">
+          <span class="time">21:00 → 21:30</span>
+          <h3>幻影秀 → 煙火 🎆</h3>
+          <p>先看城堡投影幻影秀，緊接著煙火奇妙在身邊，為一整天畫下完美句點。散場人潮多，慢慢走出園即可。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 貼心提醒 ============ -->
+  <section class="block">
+    <div class="sec-head"><span class="dot">✨</span><h2>行前貼心提醒</h2></div>
+    <p class="sec-sub">幾個容易忽略、但當天很有感的小事。</p>
+    <div class="tipgrid">
+      <div class="tipcard"><div class="ico">🔋</div><b>行動電源必帶</b><p>一整天靠 App 領卡、掃碼、拍照，手機超耗電，行動電源是生命線。</p></div>
+      <div class="tipcard"><div class="ico">☀️</div><b>防曬＋雨具</b><p>8 月上海又曬又可能午後雷陣雨，防曬、遮陽帽、輕便雨衣一起備著。</p></div>
+      <div class="tipcard"><div class="ico">💧</div><b>補水與消暑</b><p>園內可帶空水壺、有直飲水點裝水。怕熱可安排室內設施（海盜船、TRON）避開正午。</p></div>
+      <div class="tipcard"><div class="ico">🎟️</div><b>快通買在刀口上</b><p>單項快速通行預算有限的話，優先給 TRON 創極速光輪，CP 值最高。</p></div>
+      <div class="tipcard"><div class="ico">🍔</div><b>錯峰吃飯</b><p>11:00 前或 14:00 後用餐，避開排隊人潮，也不佔用玩設施的黃金時段。</p></div>
+      <div class="tipcard"><div class="ico">🧺</div><b>帶輕便野餐墊</b><p>晚上卡位看煙火要坐一段時間，一張墊子舒服很多。</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footcastle">🏰</span>
+  祝你們玩得開心，看到最美的城堡煙火！<br>
+  時間與場次以當日官方公告為準 ·
+  <a class="plan-link" href="https://www.shanghaidisneyresort.com/park-calendar" target="_blank" rel="noopener">查看官方樂園日曆 →</a>
+</footer>
+</body>
+</html>
