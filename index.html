@@ -76,11 +76,36 @@
   body {
     margin: 0;
     font-family: var(--font-body);
-    background: var(--bg);
     color: var(--ink);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    position: relative;
+    background:
+      radial-gradient(140% 60% at 85% 0%, rgba(244,169,199,.16), transparent 55%),
+      radial-gradient(120% 55% at 10% 8%, rgba(201,184,232,.18), transparent 55%),
+      radial-gradient(130% 70% at 50% 100%, rgba(245,197,66,.10), transparent 55%),
+      var(--bg);
+    background-attachment: fixed;
   }
+  /* ambient star dust over the whole page (subtle) */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: calc(.35 + var(--star-opacity) * .5);
+    background-image:
+      radial-gradient(1.5px 1.5px at 15% 22%, var(--accent-soft), transparent),
+      radial-gradient(1.5px 1.5px at 82% 12%, var(--magic-gold), transparent),
+      radial-gradient(1px 1px at 45% 35%, var(--lavender), transparent),
+      radial-gradient(1.5px 1.5px at 68% 48%, var(--accent-soft), transparent),
+      radial-gradient(1px 1px at 30% 62%, var(--lavender), transparent),
+      radial-gradient(1.5px 1.5px at 90% 72%, var(--magic-gold), transparent),
+      radial-gradient(1px 1px at 8% 85%, var(--accent-soft), transparent),
+      radial-gradient(1.5px 1.5px at 58% 90%, var(--lavender), transparent);
+    background-size: 620px 620px;
+    animation: drift 22s linear infinite;
+  }
+  @keyframes drift { to { background-position: 620px 620px; } }
+  @media (prefers-reduced-motion: reduce) { body::before { animation: none; } }
+  main, header, footer { position: relative; z-index: 1; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 
   /* ---------- HERO ---------- */
@@ -88,12 +113,32 @@
     position: relative;
     overflow: hidden;
     text-align: center;
-    padding: 74px 20px 60px;
+    padding: 78px 20px 64px;
     background:
+      radial-gradient(90% 60% at 20% 0%, rgba(244,169,199,.35), transparent 60%),
+      radial-gradient(80% 55% at 85% 15%, rgba(201,184,232,.4), transparent 60%),
       radial-gradient(120% 80% at 50% -10%, var(--night-3) 0%, var(--night-2) 42%, var(--night-1) 100%);
     color: var(--spark-white);
     isolation: isolate;
   }
+  /* soft aurora sweep behind the title */
+  .hero::before {
+    content: ""; position: absolute; z-index: -1;
+    left: 50%; top: -30%; width: 140%; height: 120%;
+    transform: translateX(-50%);
+    background:
+      conic-gradient(from 180deg at 50% 50%,
+        transparent 0deg, rgba(244,169,199,.22) 60deg,
+        transparent 140deg, rgba(245,197,66,.16) 210deg,
+        transparent 280deg, rgba(201,184,232,.22) 330deg, transparent 360deg);
+    filter: blur(30px);
+    animation: aurora 18s ease-in-out infinite;
+  }
+  @keyframes aurora {
+    0%,100% { transform: translateX(-50%) rotate(0deg) scale(1); }
+    50% { transform: translateX(-50%) rotate(12deg) scale(1.08); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
   .hero::after {
     /* twinkling stars only meaningful on the night sky, always visible on hero */
     content: "";
@@ -119,7 +164,14 @@
     margin-bottom: 18px;
     font-weight: 600;
   }
-  .castle { font-size: 46px; line-height: 1; margin-bottom: 6px; }
+  .castle {
+    font-size: 52px; line-height: 1; margin-bottom: 6px;
+    display: inline-block;
+    filter: drop-shadow(0 0 14px rgba(245,197,66,.6)) drop-shadow(0 0 26px rgba(244,169,199,.5));
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (prefers-reduced-motion: reduce) { .castle { animation: none; } }
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 800;
@@ -165,12 +217,22 @@
 
   /* ---------- SECTION SHELL ---------- */
   section.block { padding: 46px 0 8px; }
-  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .sec-head { display: flex; align-items: center; gap: 13px; margin-bottom: 8px; }
   .sec-head h2 {
     font-family: var(--font-display); font-weight: 800;
-    font-size: 24px; margin: 0; color: var(--ink);
+    font-size: 25px; margin: 0;
+    background: linear-gradient(100deg, var(--accent), var(--castle-pink-deep) 60%, var(--gold-ink));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
-  .sec-head .dot { font-size: 22px; }
+  .sec-head .dot {
+    font-size: 22px; flex: none;
+    width: 44px; height: 44px; border-radius: 14px;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg, rgba(244,169,199,.28), rgba(201,184,232,.28));
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(176,86,142,.18);
+  }
   .sec-sub { color: var(--ink-soft); margin: 0 0 26px; font-size: 15px; }
 
   /* ---------- TIMELINE ---------- */
@@ -192,20 +254,32 @@
   .stop.gem::before { border-color: var(--magic-gold); background: var(--magic-gold); }
 
   .card {
-    background: var(--surface);
+    position: relative;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--castle-pink) 6%, var(--surface)), var(--surface));
     border: 1px solid var(--line);
     border-radius: 18px;
-    padding: 18px 20px;
+    padding: 18px 20px 18px 22px;
     box-shadow: var(--shadow);
     transition: transform .18s ease, box-shadow .18s ease;
+    overflow: hidden;
   }
-  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+  .card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(var(--castle-pink), var(--lavender));
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift), 0 0 22px rgba(244,169,199,.28);
+  }
   .time {
     display: inline-block;
     font-variant-numeric: tabular-nums;
     font-weight: 700; font-size: 13px; letter-spacing: .04em;
-    color: #fff; background: var(--accent);
-    padding: 3px 12px; border-radius: 999px; margin-bottom: 10px;
+    color: #fff;
+    background: linear-gradient(120deg, var(--accent), var(--castle-pink-deep));
+    padding: 3px 13px; border-radius: 999px; margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(176,86,142,.3);
   }
   .card h3 {
     font-family: var(--font-display); font-weight: 700;
@@ -229,8 +303,14 @@
     padding: 2px 9px; border-radius: 6px;
     box-shadow: 0 1px 3px rgba(184,134,11,.3);
   }
-  .card.freecard { border-color: var(--magic-gold); background: linear-gradient(180deg, var(--surface), var(--surface-2)); }
+  .card.freecard {
+    border-color: var(--magic-gold);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--magic-gold) 12%, var(--surface)), var(--surface));
+  }
+  .card.freecard::before { background: linear-gradient(#ffe9a0, var(--magic-gold)); width: 5px; }
+  .card.freecard:hover { box-shadow: var(--shadow-lift), 0 0 22px rgba(245,197,66,.35); }
   .card.showcard { border-color: var(--castle-pink); }
+  .card.showcard::before { background: linear-gradient(var(--castle-pink-deep), var(--accent)); }
 
   /* ---------- HIGHLIGHT (预约等候卡 how-to) ---------- */
   .howto {
@@ -354,7 +434,7 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="fact"><div class="k">最晚抵達</div><div class="v">6:30</div></div>
+      <div class="fact"><div class="k">最晚抵達</div><div class="v">6:00</div></div>
       <div class="fact"><div class="k">早享入園</div><div class="v">7:30 <small>早享卡</small></div></div>
       <div class="fact"><div class="k">正式開園</div><div class="v">8:30</div></div>
     </div>
@@ -370,9 +450,9 @@
     <div class="timeline">
       <div class="stop">
         <div class="card">
-          <span class="time">～6:30</span>
+          <span class="time">～6:00</span>
           <h3>抵達迪士尼樂園</h3>
-          <p class="note">最晚 6:30 到，先過安檢、找到入口閘門排隊，才能吃到早享卡整整一小時的紅利。</p>
+          <p class="note">最晚 6:00 到，先過安檢、找到入口閘門排隊，才能吃到早享卡整整一小時的紅利。</p>
         </div>
       </div>
       <div class="stop">
@@ -388,24 +468,28 @@
   <!-- ============ 早享卡入場動線 ============ -->
   <section class="block">
     <div class="sec-head"><span class="dot">⏱️</span><h2>早享卡 · 入場排隊路口</h2></div>
-    <p class="sec-sub">早享卡可比正式開園提早最多 1 小時入園（8:30 場 → 約 7:30，實務上檢票常提早到 7:15 左右開始放行）。走對路口，黃金一小時才不會浪費。</p>
+    <p class="sec-sub">早享卡可比正式開園提早最多 1 小時入園（8:30 場 → 約 7:30）。從西公交樞紐下車後，照這條路線走就對了。</p>
     <div class="route">
-      <div class="route-head"><span class="rico">🧭</span><b>從主入口到第一個設施</b></div>
+      <div class="route-head"><span class="rico">🧭</span><b>下車 → 早享卡驗票閘口</b></div>
       <ol class="route-steps">
         <li>
-          <span class="rs-title">主入口 → 早享卡專屬驗證通道</span>
-          <p>過主閘門後找「<mark>樂園早享卡 / Early Park Entry</mark>」的專屬入口，先掃早享卡二維碼驗證，再過安檢。實測經驗：<b>靠最左或最右側的通道人最少</b>，別擠中間。</p>
+          <span class="rs-title">下車出發 · 西公交樞紐</span>
+          <p>在<mark>西公交樞紐</mark>下車後，跟隨上方斗篷型的「<b>米奇屋頂天橋</b>」指標或人群方向走，經由無障礙斜坡或階梯上橋。</p>
         </li>
         <li>
-          <span class="rs-title">米奇大街直行 → 城堡前管制線</span>
-          <p>驗證後沿<mark>米奇大街</mark>一路直行，走到底接近<mark>奇想花園（城堡前廣場）</mark>。正式開園前，工作人員會在這裡拉起<b>管制等待線</b>，大家在此候場。</p>
+          <span class="rs-title">走過米奇屋頂天橋</span>
+          <p>直行通過橫跨大路的觀景天橋，此時<b>右手邊可遠眺<mark>星願湖</mark></b>風景，順手拍張照。</p>
         </li>
         <li>
-          <span class="rs-title">開放後 → 直奔明日世界 / 夢幻世界</span>
-          <p>時間一到放行，早享時段主要開放<mark>明日世界</mark>與<mark>夢幻世界</mark>方向的熱門設施。建議先衝你這天最搶手的 <b>創極速光輪 TRON</b> 或 <b>七個小矮人礦山車</b>，趁人少刷掉。</p>
+          <span class="rs-title">下天橋 → 抵達安檢區</span>
+          <p>下天橋後跟隨指示牌往前，抵達樂園主入口的安檢通道。安檢區會<b>明確劃分出「<mark>早享卡專用通道</mark>」</b>，走這條。</p>
+        </li>
+        <li>
+          <span class="rs-title">早享卡驗票排隊入園</span>
+          <p>通過安檢後繼續往前，尋找標示為「<mark>早享卡 / Early Park Entry</mark>」的排隊閘口，驗票入園。入園後就能開始領預約等候卡、衝設施。</p>
         </li>
       </ol>
-      <p class="route-foot">📱 開放的確切區域與設施每日可能微調，<b>務必以入園當天官方 App 的樂園地圖與現場工作人員指引為準</b>。到不了或找不到路口，可到園區「遊客服務中心」詢問。</p>
+      <p class="route-foot">📱 開放的確切設施每日可能微調，建議入園後以官方 App 樂園地圖與現場指引為準。找不到路口可就近詢問工作人員或遊客服務中心。</p>
     </div>
   </section>
 
