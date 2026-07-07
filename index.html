@@ -262,6 +262,51 @@
     border-top: 1px dashed rgba(255,255,255,.2); padding-top: 14px;
   }
 
+  /* ---------- EARLY ENTRY ROUTE ---------- */
+  .route {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 18px; padding: 4px 6px 6px; box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .route-head {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--magic-gold), #ffd766);
+    margin: -4px -6px 0; padding: 14px 20px;
+    color: #6b4a00;
+  }
+  .route-head .rico { font-size: 22px; }
+  .route-head b { font-family: var(--font-display); font-weight: 800; font-size: 17px; }
+  .route-steps {
+    list-style: none; margin: 0; padding: 8px 4px; counter-reset: r;
+  }
+  .route-steps > li {
+    position: relative; padding: 12px 14px 12px 52px; counter-increment: r;
+  }
+  .route-steps > li:not(:last-child)::after {
+    content: ""; position: absolute; left: 24px; top: 44px; bottom: -6px;
+    width: 2px; background: var(--line);
+  }
+  .route-steps > li::before {
+    content: counter(r); position: absolute; left: 12px; top: 12px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-weight: 700; font-size: 13px;
+    display: grid; place-items: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .route-steps > li b { color: var(--ink); font-weight: 700; }
+  .route-steps > li .rs-title { display: block; color: var(--ink); font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .route-steps > li p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+  .route-steps mark {
+    background: var(--surface-2); color: var(--accent);
+    padding: 1px 6px; border-radius: 5px; font-weight: 700;
+  }
+  .route-foot {
+    margin: 2px 8px 8px; font-size: 12.5px; color: var(--ink-soft);
+    background: var(--surface-2); border-radius: 10px; padding: 10px 14px;
+    line-height: 1.6;
+  }
+
   /* ---------- SHOWTIMES ---------- */
   .shows { display: grid; gap: 12px; }
   .showrow {
@@ -337,6 +382,30 @@
           <p>提前下載「上海迪士尼度假區」官方 App、登入帳號、綁定門票並<b>建立遊玩組</b>，一入園就能全組一起領預約等候卡。詳細步驟見下方 👇</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ 早享卡入場動線 ============ -->
+  <section class="block">
+    <div class="sec-head"><span class="dot">⏱️</span><h2>早享卡 · 入場排隊路口</h2></div>
+    <p class="sec-sub">早享卡可比正式開園提早最多 1 小時入園（8:30 場 → 約 7:30，實務上檢票常提早到 7:15 左右開始放行）。走對路口，黃金一小時才不會浪費。</p>
+    <div class="route">
+      <div class="route-head"><span class="rico">🧭</span><b>從主入口到第一個設施</b></div>
+      <ol class="route-steps">
+        <li>
+          <span class="rs-title">主入口 → 早享卡專屬驗證通道</span>
+          <p>過主閘門後找「<mark>樂園早享卡 / Early Park Entry</mark>」的專屬入口，先掃早享卡二維碼驗證，再過安檢。實測經驗：<b>靠最左或最右側的通道人最少</b>，別擠中間。</p>
+        </li>
+        <li>
+          <span class="rs-title">米奇大街直行 → 城堡前管制線</span>
+          <p>驗證後沿<mark>米奇大街</mark>一路直行，走到底接近<mark>奇想花園（城堡前廣場）</mark>。正式開園前，工作人員會在這裡拉起<b>管制等待線</b>，大家在此候場。</p>
+        </li>
+        <li>
+          <span class="rs-title">開放後 → 直奔明日世界 / 夢幻世界</span>
+          <p>時間一到放行，早享時段主要開放<mark>明日世界</mark>與<mark>夢幻世界</mark>方向的熱門設施。建議先衝你這天最搶手的 <b>創極速光輪 TRON</b> 或 <b>七個小矮人礦山車</b>，趁人少刷掉。</p>
+        </li>
+      </ol>
+      <p class="route-foot">📱 開放的確切區域與設施每日可能微調，<b>務必以入園當天官方 App 的樂園地圖與現場工作人員指引為準</b>。到不了或找不到路口，可到園區「遊客服務中心」詢問。</p>
     </div>
   </section>
 
